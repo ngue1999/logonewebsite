@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="{{asset('assets/')}}/img/apple-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/')}}/img/favicon.ico">
+        <!-- Load Require CSS -->
+        <link href="{{asset('assets/')}}css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font CSS -->
+        <link href="{{asset('assets/')}}css/boxicon.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        <!-- Load Tempalte CSS -->
+        <link rel="stylesheet" href="{{asset('assets/')}}css/templatemo.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{asset('assets/')}}/css/custom.css">
+
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {{ include('includes/navBarFrontOffice.html.twig') }}
+        
+       {% block content %}
+
+        {% endblock %}
+
+        {{ include('/includes/footer.html.twig')}}
+        
+        
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!-- Load jQuery require for isotope -->
+        <script src="assets/js/jquery.min.js"></script>
+        <!-- Isotope -->
+        <script src="assets/js/isotope.pkgd.js"></script>
+        <!-- Page Script -->
+        <script>
+        $(window).load(function() {
+            // init Isotope
+            var $projects = $('.projects').isotope({
+                itemSelector: '.project',
+                layoutMode: 'fitRows'
+            });
+            $(".filter-btn").click(function() {
+                var data_filter = $(this).attr("data-filter");
+                $projects.isotope({
+                    filter: data_filter
+                });
+                $(".filter-btn").removeClass("active");
+                $(".filter-btn").removeClass("shadow");
+                $(this).addClass("active");
+                $(this).addClass("shadow");
+                return false;
+            });
+        });
+        <script>
+        fsLightboxInstances['gallery'].props.loadOnlyCurrentSource = true;
+        </script>
+        </script>
+        <!-- Templatemo -->
+        <script src="{{asset('assets/')}}js/templatemo.js"></script>
+        <!-- Custom -->
+        <script src="{{asset('assets/')}}js/custom.js"></script>
+        {% endblock %}
+    </body>
+</html>
